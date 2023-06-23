@@ -1,0 +1,98 @@
+<div class="header bg-gradient-info pb-8 pt-5 pt-md-8">
+  <div class="container-fluid">
+    <div class="header-body">
+      <!-- Card stats -->
+      <h2 style="color: white;">
+        Gestión de pacientes del consultorio odontológico
+      </h2>
+    </div>
+  </div>
+</div>
+<!-- Page content -->
+<div class="container-fluid mt--7">
+  <!-- Dark table -->
+  <div class="row mt-5">
+    <div class="col">
+      <div class="card bg-default shadow">
+        <div class="card-header bg-transparent border-0">
+          <div class="row">
+            <h3 class="text-white mb-0">{{titulo}}&nbsp;&nbsp;</h3>
+            <button type="button" class="btn btn-light" id="boton1" data-bs-toggle="modal" (click)="nuevo()" data-bs-target="#exampleVerticallycenteredModal">Nuevo</button>
+            <button type="button" class="btn btn-light" id="boton2" style="display: none;" (click)="regresar()">Regresar</button>
+            <input type="text" style="width: 175px;" [(ngModel)]="cedula2" id="buscador" name="buscador" maxlength="10" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;"
+            (keyup)="buscador()" type="text" class="form-control form-control-alternative" placeholder="Ingrese una cédula">
+          </div><br>
+        <div class="table-responsive" id="tabla">
+          <table class="table align-items-center table-dark table-flush" style="overflow: auto">
+            <thead style="background-color: rgb(49, 83, 135); color: rgb(255, 255, 255);">
+              <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Cédula</th>
+                <th scope="col">Celular</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let empleado of empleados; let i = index; let first = first; let last = last;">
+                <td>{{empleado.nombre}}</td>
+                <td>{{empleado.apellido}}</td>
+                <td>{{empleado.cedula}}</td>
+                <td>{{empleado.celular}}</td>
+                <td><button type="button" class="btn btn-primary btn-sm" (click)= "remove(empleado)" data-bs-toggle="modal" data-bs-target="#exampleVerticallycenteredModal">{{btn1}}</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="table-responsive" id="tabla2" style="display: none">
+          <table class="table align-items-center table-dark table-flush" style="overflow: auto">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Cédula</th>
+                <th scope="col">Celular</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><input [(ngModel)]="nombre" type="text" onkeydown="return /[áéíóúÁÉÍÓÚa-zA-Zñ]/i.test(event.key)"></td>
+                <td><input [(ngModel)]="apellido" type="text" onkeydown="return /[áéíóúÁÉÍÓÚa-zA-Zñ]/i.test(event.key)"></td>
+                <td><input [(ngModel)]="cedula" type="text" maxlength="10" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" (change)="validadorDeCedula(cedula)"></td>
+                <td><input [(ngModel)]="celular" type="text" maxlength="10" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;"></td>
+                <td><button type="button" class="btn btn-primary btn-sm" (click)="guardar()">{{btn2}}</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="exampleVerticallycenteredModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Registro de pacientes</h5>
+      </div>
+      <div class="modal-body">
+        <form class="register-form">
+          <label>Cedula</label>
+          <input type="text" class="form-control" id="cedula" maxlength="10" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" [(ngModel)]="cedula" name="cedula" placeholder="Cedula" (change)="validadorDeCedula(cedula)">
+          <label>Nombre</label>
+          <input type="text" class="form-control" [(ngModel)]="nombre" name="nombre" placeholder="Nombre" onkeydown="return /[áéíóúÁÉÍÓÚa-zA-Zñ]/i.test(event.key)">
+          <label>Apellido</label>
+          <input type="text" class="form-control" [(ngModel)]="apellido" name="apellido" placeholder="Apellido" onkeydown="return /[áéíóúÁÉÍÓÚa-zA-Zñ]/i.test(event.key)">
+          <label>Celular</label>
+          <input type="text" class="form-control" maxlength="10" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;" [(ngModel)]="celular" name="celular" placeholder="Celular">
+          <br>
+          <button class="btn btn-primary btn-block btn-round" (click)="guardar()" data-bs-dismiss="modal">Guardar</button>
+      </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" style="background-color: rgb(240, 240, 240);" data-bs-dismiss="modal" (click)="regresar()">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>

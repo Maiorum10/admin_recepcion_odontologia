@@ -1,0 +1,301 @@
+<div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 600px;
+background-image: url(); background-color:#5fc0f1; background-size: cover; background-position: center top;">
+  <div class="container-fluid">
+    <h2 style="color: white;">
+      {{titulo}}
+    </h2>
+    <div class="header-body" id="tabla">
+      <!-- Card stats -->
+      <div class="row justify-content-center">
+        <div>
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" (click)="consultarEmpleados()">
+              {{dropdown}}
+            </button>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" *ngFor="let empleado of empleados" (click)="remove(empleado)">{{empleado.nombre}} {{empleado.apellido}}</a></li>
+            </ul>
+          </div>
+          <label for="start">Fecha: </label>
+          <input type="date" (keyup)="calendar()" id="fecha" name="fecha" [(ngModel)]="fecha">&nbsp;&nbsp;
+          <button type="button" class="btn btn-light" (click)="consultarTurnos1()">Consultar</button>
+          <button type="button" class="btn btn-primary" (click)="reporte1()" id="btn1">Reporte de citas por médico</button>
+          <button type="button" class="btn btn-primary" (click)="pdf2()">Reporte de citas diarias</button>
+          <br><br>
+        </div>
+        <table class="table tb table-striped" style="background-color: white;">
+          <thead style="background-color: rgb(16, 16, 58); color: aliceblue;">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Hora</th>
+              <th scope="col">Cédula</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Apellido</th>
+              <th scope="col">Estado de la cita</th>
+              <th scope="col">.</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>8:00-8:45</td>
+              <td>{{cedula1}}</td>
+              <td>{{nombre1}}</td>
+              <td>{{apellido1}}</td>
+              <td>{{estado1}}</td>
+              <td><button type="button" class="btn btn-primary btn-sm" (click)="editar1()">Editar</button></td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>9:00-9:45</td>
+              <td>{{cedula2}}</td>
+              <td>{{nombre2}}</td>
+              <td>{{apellido2}}</td>
+              <td>{{estado2}}</td>
+              <td><button type="button" class="btn btn-primary btn-sm" (click)="editar2()">Editar</button></td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>10:00-10:45</td>
+              <td>{{cedula3}}</td>
+              <td>{{nombre3}}</td>
+              <td>{{apellido3}}</td>
+              <td>{{estado3}}</td>
+              <td><button type="button" class="btn btn-primary btn-sm" (click)="editar3()">Editar</button></td>
+            </tr>
+            <tr>
+              <th scope="row">4</th>
+              <td>11:00-11:45</td>
+              <td>{{cedula4}}</td>
+              <td>{{nombre4}}</td>
+              <td>{{apellido4}}</td>
+              <td>{{estado4}}</td>
+              <td><button type="button" class="btn btn-primary btn-sm" (click)="editar4()">Editar</button></td>
+            </tr>
+            <tr>
+              <th scope="row">5</th>
+              <td>12:00-12:45</td>
+              <td>{{cedula5}}</td>
+              <td>{{nombre5}}</td>
+              <td>{{apellido5}}</td>
+              <td>{{estado5}}</td>
+              <td><button type="button" class="btn btn-primary btn-sm" (click)="editar5()">Editar</button></td>
+            </tr>
+            <tr>
+              <th scope="row">6</th>
+              <td>14:00-14:45</td>
+              <td>{{cedula6}}</td>
+              <td>{{nombre6}}</td>
+              <td>{{apellido6}}</td>
+              <td>{{estado6}}</td>
+              <td><button type="button" class="btn btn-primary btn-sm" (click)="editar6()">Editar</button></td>
+            </tr>
+            <tr>
+              <th scope="row">7</th>
+              <td>15:00-15:45</td>
+              <td>{{cedula7}}</td>
+              <td>{{nombre7}}</td>
+              <td>{{apellido7}}</td>
+              <td>{{estado7}}</td>
+              <td><button type="button" class="btn btn-primary btn-sm" (click)="editar7()">Editar</button></td>
+            </tr>
+            <tr>
+              <th scope="row">8</th>
+              <td>16:00-16:45</td>
+              <td>{{cedula8}}</td>
+              <td>{{nombre8}}</td>
+              <td>{{apellido8}}</td>
+              <td>{{estado8}}</td>
+              <td><button type="button" class="btn btn-primary btn-sm" (click)="editar8()">Editar</button></td>
+            </tr>
+            <tr>
+              <th scope="row">9</th>
+              <td>17:00-17:45</td>
+              <td>{{cedula9}}</td>
+              <td>{{nombre9}}</td>
+              <td>{{apellido9}}</td>
+              <td>{{estado9}}</td>
+              <td><button type="button" class="btn btn-primary btn-sm" (click)="editar9()">Editar</button></td>
+            </tr>
+            <tr>
+              <th scope="row">10</th>
+              <td>18:00-18:45</td>
+              <td>{{cedula10}}</td>
+              <td>{{nombre10}}</td>
+              <td>{{apellido10}}</td>
+              <td>{{estado10}}</td>
+              <td><button type="button" class="btn btn-primary btn-sm" (click)="editar10()">Editar</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="header-body" id="tabla2" style="display: none">
+      <div class="row justify-content-center">
+        <table class="table tb table-striped" style="background-color: white;">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Hora</th>
+              <th scope="col">Cédula</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Apellido</th>
+              <th scope="col">Estado de la cita</th>
+              <th scope="col"><button type="button" class="btn btn-primary btn-sm" (click)="regresar()">Regresar</button></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">{{numero}}</th>
+              <td><input [(ngModel)]="hora" type="text" [disabled]="stateH"></td>
+              <td><input [(ngModel)]="cedula" id="cedula" type="text" [disabled]="stateC" ><input [(ngModel)]="cedula" id="buscador" name="buscador" (keyup)="buscador()" type="text" onKeypress="if (event.keyCode < 45 || event.keyCode > 57) event.returnValue = false;"></td>
+              <td><input [(ngModel)]="nombre" type="text" [disabled]="stateN"></td>
+              <td><input [(ngModel)]="apellido" type="text" [disabled]="stateS"></td>
+              <td><div class="dropdown">
+                <button class="btn btn-secondary btn-sm dropdown-toggle" [disabled]="stateE" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  {{estado}}
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" (click)="state('Disponible')">Disponible</a></li>
+                  <li><a class="dropdown-item" (click)="state('No disponible')">No disponible</a></li>
+                </ul>
+              </div></td>
+              <td><button type="button" class="btn btn-primary btn-sm" (click)="guardar()">Guardar</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-center" id="pdf2">
+    <table class="table tb table-striped" style="background-color: white; width: 350x;">
+      <thead style="background-color: black; color: white;">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Hora</th>
+          <th scope="col">Cédula</th>
+          <th scope="col">Nombre</th>
+          <th scope="col">Apellido</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let dia of dias">
+        <tr>
+          <td>{{dia.numero}}</td>
+          <td>{{dia.hora}}</td>
+          <td>{{dia.cedula}}</td>
+          <td>{{dia.p_nombre}}</td>
+          <td>{{dia.p_apellido}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="row justify-content-center" id="pdf1">
+  <table class="table tb table-striped" style="background-color: white;">
+    <thead style="background-color: rgb(16, 16, 58); color: aliceblue;">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Hora</th>
+        <th scope="col">Cédula</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Estado de la cita</th>
+        <th scope="col" id="rep">.</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr [ngClass]="{ ocultar: estado1 === 'Disponible' }">
+        <th scope="row">1</th>
+        <td>8:00-8:45</td>
+        <td>{{cedula1}}</td>
+        <td>{{nombre1}}</td>
+        <td>{{apellido1}}</td>
+        <td>{{estado1}}</td>
+        <td id="rep1"><button type="button" class="btn btn-primary btn-sm" (click)="editar1()">Editar</button></td>
+      </tr>
+      <tr [ngClass]="{ ocultar: estado2 === 'Disponible' }">
+        <th scope="row">2</th>
+        <td>9:00-9:45</td>
+        <td>{{cedula2}}</td>
+        <td>{{nombre2}}</td>
+        <td>{{apellido2}}</td>
+        <td>{{estado2}}</td>
+        <td id="rep2"><button type="button" class="btn btn-primary btn-sm" (click)="editar2()">Editar</button></td>
+      </tr>
+      <tr [ngClass]="{ ocultar: estado3 === 'Disponible' }">
+        <th scope="row">3</th>
+        <td>10:00-10:45</td>
+        <td>{{cedula3}}</td>
+        <td>{{nombre3}}</td>
+        <td>{{apellido3}}</td>
+        <td>{{estado3}}</td>
+        <td id="rep3"><button type="button" class="btn btn-primary btn-sm" (click)="editar3()">Editar</button></td>
+      </tr>
+      <tr [ngClass]="{ ocultar: estado4 === 'Disponible' }">
+        <th scope="row">4</th>
+        <td>11:00-11:45</td>
+        <td>{{cedula4}}</td>
+        <td>{{nombre4}}</td>
+        <td>{{apellido4}}</td>
+        <td>{{estado4}}</td>
+        <td id="rep4"><button type="button" class="btn btn-primary btn-sm" (click)="editar4()">Editar</button></td>
+      </tr>
+      <tr [ngClass]="{ ocultar: estado5 === 'Disponible' }">
+        <th scope="row">5</th>
+        <td>12:00-12:45</td>
+        <td>{{cedula5}}</td>
+        <td>{{nombre5}}</td>
+        <td>{{apellido5}}</td>
+        <td>{{estado5}}</td>
+        <td id="rep5"><button type="button" class="btn btn-primary btn-sm" (click)="editar5()">Editar</button></td>
+      </tr>
+      <tr [ngClass]="{ ocultar: estado6 === 'Disponible' }">
+        <th scope="row">6</th>
+        <td>14:00-14:45</td>
+        <td>{{cedula6}}</td>
+        <td>{{nombre6}}</td>
+        <td>{{apellido6}}</td>
+        <td>{{estado6}}</td>
+        <td id="rep6"><button type="button" class="btn btn-primary btn-sm" (click)="editar6()">Editar</button></td>
+      </tr>
+      <tr [ngClass]="{ ocultar: estado7 === 'Disponible' }">
+        <th scope="row">7</th>
+        <td>15:00-15:45</td>
+        <td>{{cedula7}}</td>
+        <td>{{nombre7}}</td>
+        <td>{{apellido7}}</td>
+        <td>{{estado7}}</td>
+        <td id="rep7"><button type="button" class="btn btn-primary btn-sm" (click)="editar7()">Editar</button></td>
+      </tr>
+      <tr [ngClass]="{ ocultar: estado8 === 'Disponible' }">
+        <th scope="row">8</th>
+        <td>16:00-16:45</td>
+        <td>{{cedula8}}</td>
+        <td>{{nombre8}}</td>
+        <td>{{apellido8}}</td>
+        <td>{{estado8}}</td>
+        <td id="rep8"><button type="button" class="btn btn-primary btn-sm" (click)="editar8()">Editar</button></td>
+      </tr>
+      <tr [ngClass]="{ ocultar: estado9 === 'Disponible' }">
+        <th scope="row">9</th>
+        <td>17:00-17:45</td>
+        <td>{{cedula9}}</td>
+        <td>{{nombre9}}</td>
+        <td>{{apellido9}}</td>
+        <td>{{estado9}}</td>
+        <td id="rep9"><button type="button" class="btn btn-primary btn-sm" (click)="editar9()">Editar</button></td>
+      </tr>
+      <tr [ngClass]="{ ocultar: estado10 === 'Disponible' }">
+        <th scope="row">10</th>
+        <td>18:00-18:45</td>
+        <td>{{cedula10}}</td>
+        <td>{{nombre10}}</td>
+        <td>{{apellido10}}</td>
+        <td>{{estado10}}</td>
+        <td id="rep10"><button type="button" class="btn btn-primary btn-sm" (click)="editar10()">Editar</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
